@@ -10,7 +10,7 @@ build: off  # будем использовать свой скрипт сбор
 
 install:
   # Запуск приложения в фоновом режиме
-  - java -jar ./artifacts/app-card-delivery.jar &
+  - java -jar /home/appveyor/projects/aqa-selenide/artifacts/app-card-delivery.jar &
 
   # Ожидание запуска сервера
   - |
