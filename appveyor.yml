@@ -10,6 +10,16 @@ build: off  # будем использовать свой скрипт сбор
 
 install:
   - java -jar ./artifacts/app-card-delivery.jar &
+  - |
+    for i in {1..30}; do
+      if curl -s http://localhost:9999/ > /dev/null; then
+        echo "Сервер запущен!"
+        break
+      else
+        echo "Ожидание запуска сервера..."
+        sleep 1  # Ожидание 1 секунды перед следующей проверкой
+      fi
+    done
   - chmod +x gradlew
 
 build_script:
