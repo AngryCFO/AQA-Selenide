@@ -5,11 +5,7 @@ plugins {
 group 'ru.netology'
 version '1.0-SNAPSHOT'
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-}
-
+sourceCompatibility = 11
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -18,17 +14,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0' // JUnit
-    testImplementation 'com.codeborne:selenide:6.13.0' // Selenide
-    implementation 'ch.qos.logback:logback-classic:1.2.3' // Logback
-    implementation 'org.slf4j:slf4j-api:1.7.30' // SLF4J API
-    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0' // WebDriverManager
-    implementation 'org.seleniumhq.selenium:selenium-java:4.8.3' // Selenium
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.6.1'
+    testImplementation 'com.codeborne:selenide:6.13.0'
 }
 
 test {
     useJUnitPlatform()
-    systemProperty 'selenide.headless', 'true' // Headless режим
-    systemProperty 'selenide.start-maximized', 'true' // Максимизация окна
-    systemProperty 'selenide.timeout', '10000' // Таймаут
+    systemProperty 'selenide.headless', System.getProperty('selenide.headless')
 }
