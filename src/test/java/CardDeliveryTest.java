@@ -1,4 +1,5 @@
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
@@ -11,6 +12,12 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryTest {
+    @BeforeAll
+    static void setup() {
+        Configuration.baseUrl = "http://localhost:9999/";
+        Configuration.headless = true; // Если хотите запускать в headless режиме
+    }
+
     @Test
     void shouldTestFormPositive() {
         // Открываем страницу
