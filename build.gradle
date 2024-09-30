@@ -18,17 +18,17 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0' // Обновлено до последней стабильной версии JUnit
-    testImplementation 'com.codeborne:selenide:6.13.0' // Selenide для автоматизации тестирования
-    implementation 'ch.qos.logback:logback-classic:1.2.3' // Логирование SLF4J с использованием Logback
-    implementation 'org.slf4j:slf4j-api:1.7.30' // Добавлено для SLF4J API
-    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0' // WebDriverManager для автоматической установки драйвера
-    implementation 'org.seleniumhq.selenium:selenium-java:4.8.3' // Зависимость для Selenium
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0' // JUnit
+    testImplementation 'com.codeborne:selenide:6.13.0' // Selenide
+    implementation 'ch.qos.logback:logback-classic:1.2.3' // Logback
+    implementation 'org.slf4j:slf4j-api:1.7.30' // SLF4J API
+    implementation 'io.github.bonigarcia:webdrivermanager:5.7.0' // WebDriverManager
+    implementation 'org.seleniumhq.selenium:selenium-java:4.8.3' // Selenium
 }
 
 test {
     useJUnitPlatform()
-    systemProperty 'selenide.headless', 'true' // Включить headless-режим
-    systemProperty 'selenide.start-maximized', 'true' // Максимизировать окно
-    systemProperty 'selenide.timeout', '10000' // Таймаут ожидания
+    systemProperty 'selenide.headless', 'true' // Headless режим
+    systemProperty 'selenide.start-maximized', 'true' // Максимизация окна
+    systemProperty 'selenide.timeout', '10000' // Таймаут
 }

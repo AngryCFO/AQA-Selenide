@@ -9,7 +9,10 @@ branches:
 build: off  # будем использовать свой скрипт сборки
 
 install:
+  # Запуск приложения в фоновом режиме
   - java -jar ./artifacts/app-card-delivery.jar &
+
+  # Ожидание запуска сервера
   - |
     for i in {1..30}; do
       if curl -s http://localhost:9999/ > /dev/null; then
@@ -20,7 +23,18 @@ install:
         sleep 1  # Ожидание 1 секунды перед следующей проверкой
       fi
     done
+
+  - sleep 5 # Задержка перед запуском тестов
+
+  # Проверка, запустился ли сервер
+  - |
+    if ! curl -s http://localhost:9999/ > /dev/null; then
+      echo "Сервер не запустился за 30 секунд. Завершение."
+      exit 1  # Завершение с ошибкой
+    fi
+
   - chmod +x gradlew
 
 build_script:
   - ./gradlew test -Dselenide.headless=true --info
+

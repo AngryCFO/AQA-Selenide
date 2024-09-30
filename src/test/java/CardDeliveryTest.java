@@ -14,14 +14,17 @@ import static com.codeborne.selenide.Selenide.*;
 public class CardDeliveryTest {
     @BeforeAll
     static void setup() {
+        // Настройки Selenide
         Configuration.baseUrl = "http://localhost:9999/";
-        Configuration.headless = true; // Если хотите запускать в headless режиме
+        Configuration.headless = true; // Запускаем в headless режиме
+        Configuration.browserSize = "1920x1080"; // Задаем размер окна для headless режима
+        Configuration.timeout = 15000; // Таймаут для ожидания
     }
 
     @Test
     void shouldTestFormPositive() {
         // Открываем страницу
-        open("http://localhost:9999/");
+        open(Configuration.baseUrl);
 
         // Заполняем поля формы
         $("[data-test-id='city'] input").setValue("Санкт-Петербург");
@@ -41,8 +44,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldTestFormComplexCity() {
-        // Аналогично, тест для сложного города
-        open("http://localhost:9999/");
+        open(Configuration.baseUrl);
         $("[data-test-id='city'] input").setValue("Мо").shouldBe(visible, Duration.ofSeconds(3));
         $(byText("Москва")).click();
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
@@ -57,8 +59,7 @@ public class CardDeliveryTest {
 
     @Test
     void shouldTestFormComplexDate() {
-        // Тест для сложной даты
-        open("http://localhost:9999/");
+        open(Configuration.baseUrl);
         $("[data-test-id='city'] input").setValue("Казань");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         String newDate = LocalDate.now().plusDays(7).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
